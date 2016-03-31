@@ -1,0 +1,7 @@
+<resources>
+	<string name="app_name">Yandex.Artists</string>
+	<string name="title_activity_artist_details">Yandex.Artists</string>
+
+	<string name="loading_on_progress">Загрузка…</string>
+	<string name="download_failed">Что-то пошло не так :(\nПопробуйте перезагрузить\nстраницу</string>
+</resources>
