@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_height="match_parent"
-              android:layout_width="match_parent"
-              android:orientation="vertical">
+             android:layout_height="match_parent"
+             android:layout_width="match_parent"
+             android:orientation="vertical">
 	<ListView xmlns:android="http://schemas.android.com/apk/res/android"
 	          android:id="@+id/artists"
 	          android:layout_height="match_parent"
@@ -16,14 +16,14 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:id="@+id/info"
-		/>
+				android:gravity="center_horizontal"/>
 		<ProgressBar
-				style="@style/ProgressBar"
+				style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
 				android:layout_width="120dp"
 				android:layout_height="wrap_content"
 				android:id="@+id/progressBar"
 				android:indeterminate="true"
-				android:indeterminateTint="@color/colorPrimary"
+				android:indeterminateTint="@color/primary"
 				android:indeterminateTintMode="src_in"/>
 	</LinearLayout>
 </FrameLayout>

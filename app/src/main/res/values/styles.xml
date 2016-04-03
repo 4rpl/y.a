@@ -2,11 +2,14 @@
 
 	<!-- Base application theme. -->
 	<style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
-		<item name="colorPrimary">@color/colorPrimary</item>
-		<item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primaryDark</item>
 	</style>
-	<style name="ProgressBar" parent="Base.Widget.AppCompat.ProgressBar.Horizontal">
+	<style name="ProgressBar" parent="Widget.AppCompat.ProgressBar.Horizontal" />
+	<style name="DetailsTheme" parent="Theme.AppCompat.Light.NoActionBar">
+		<item name="colorPrimary">@color/primary</item>
+		<item name="colorPrimaryDark">@color/primaryDark</item>
+		<item name="android:colorBackground">@color/background</item>
 	</style>
-	<style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
 </resources>

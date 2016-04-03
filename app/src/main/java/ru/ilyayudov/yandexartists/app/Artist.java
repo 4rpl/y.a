@@ -1,6 +1,8 @@
 package ru.ilyayudov.yandexartists.app;
 
-public class Artist {
+import java.io.Serializable;
+
+public class Artist implements Serializable {
     int id, tracks, albums;
     String name, link, description, coverSmall, coverBig;
     Genre[] genres;
@@ -27,10 +29,6 @@ public class Artist {
         this.genres = genres;
     }
 
-    public Artist(String name) {
-        this.name = name;
-    }
-
     public static Genre getGenre(String s) {
         if (s.equals("pop"))            return Genre.Pop;
         if (s.equals("Dance"))          return Genre.Dance;
@@ -42,6 +40,11 @@ public class Artist {
         Pop,
         Dance,
         Electronics
+    }
+
+    @Override
+    public String toString() {
+        return name;
     }
 }
 
