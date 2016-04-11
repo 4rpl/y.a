@@ -1,10 +1,15 @@
 package ru.ilyayudov.yandexartists.app;
 
+import android.content.Intent;
+import android.gesture.Gesture;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.view.GestureDetectorCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.graphics.drawable.DrawableWrapper;
+import android.text.TextUtils;
+import android.view.GestureDetector;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
@@ -38,20 +43,39 @@ public class ArtistDetailsActivity extends AppCompatActivity {
         albums = (TextView) findViewById(R.id.album_counter);
         tracks = (TextView) findViewById(R.id.track_counter);
         description = (TextView) findViewById(R.id.description);
-        pb = (ProgressBar) findViewById(R.id.progressBar);
+        pb = (ProgressBar) findViewById(R.id.small_cover_pb);
+        link = (TextView) findViewById(R.id.link);
         //endregion
 
-        Artist artist = (Artist) getIntent().getSerializableExtra("artist");
+        final Artist artist = (Artist) getIntent().getSerializableExtra("artist");
 
         name.setText(artist.name);
+        if (artist.link != null) {
+            link.setVisibility(View.VISIBLE);
+            link.setText(artist.link);
+        }
+        if (artist.genres.length > 0) {
+            genres.setVisibility(View.VISIBLE);
+            genres.setText(TextUtils.join(", ", artist.genres));
+        }
         albums.setText(String.valueOf(artist.albums));
         tracks.setText(String.valueOf(artist.tracks));
-        description.setText(artist.description);
-
+        if (artist.description != null) {
+            description.setVisibility(View.VISIBLE);
+            description.setText(artist.name + " - " + artist.description);
+        }
         if (artist.coverSmall != null) {
+            cover.setVisibility(View.VISIBLE);
             new CoverUploader().execute(artist.coverSmall);
-        } else {
-            cover.setVisibility(View.GONE);
+            cover.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ArtistDetailsActivity.this, CoverObserverActivity.class);
+                    intent.putExtra("uri", artist.coverBig);
+                    intent.putExtra("name", artist.name);
+                    startActivity(intent);
+                }
+            });
         }
     }
 
@@ -60,8 +84,7 @@ public class ArtistDetailsActivity extends AppCompatActivity {
         protected Drawable doInBackground(String... params) {
             Drawable coverSmall;
             try {
-                InputStream stream = (InputStream) new URL(params[0]).getContent();
-                coverSmall = Drawable.createFromStream(stream, "small cover");
+                coverSmall = ImageUploadManager.GetImage(params[0]);
             } catch (IOException e) {
                 return null;
             }
@@ -70,8 +93,7 @@ public class ArtistDetailsActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(Drawable result) {
-            super.onPostExecute(result);
-            pb.setVisibility(View.INVISIBLE);
+            //pb.setVisibility(View.GONE);
             if (result != null) {
                 cover.setImageDrawable(result);
             } else {

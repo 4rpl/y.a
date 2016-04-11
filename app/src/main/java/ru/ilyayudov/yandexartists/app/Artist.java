@@ -1,8 +1,11 @@
 package ru.ilyayudov.yandexartists.app;
 
-import java.io.Serializable;
+import android.support.annotation.NonNull;
 
-public class Artist implements Serializable {
+import java.io.Serializable;
+import java.net.CacheRequest;
+
+public class Artist implements Serializable, Comparable<Artist> {
     int id, tracks, albums;
     String name, link, description, coverSmall, coverBig;
     Genre[] genres;
@@ -29,17 +32,121 @@ public class Artist implements Serializable {
         this.genres = genres;
     }
 
-    public static Genre getGenre(String s) {
-        if (s.equals("pop"))            return Genre.Pop;
-        if (s.equals("Dance"))          return Genre.Dance;
-        if (s.equals("Electronics"))    return Genre.Electronics;
-        return Genre.Pop;
+    public enum Genre {
+        UNKNOWN_GENRE(""),
+        POP("pop"),
+        DANCE("dance"),
+        ELECTRONICS("electronics"),
+        RNB("rnb"),
+        RAP("rap"),
+        RUSRAP("rusrap"),
+        SOUL("soul"),
+        ALTERNATIVE("alternative"),
+        COUNTRY("country"),
+        URBAN("urban"),
+        RUSROCK("rusrock"),
+        LOCAL_INDIE("local-indie"),
+        CLASSICAL("classical"),
+        FOLK("folk"),
+        ROCK("rock"),
+        INDIE("indie"),
+        RELAX("relax"),
+        JAZZ("jazz"),
+        BLUES("blues"),
+        SOUNDTRACK("soundtrack"),
+        LATINFOLK("latinfolk"),
+        METAL("metal"),
+        ESTRADA("estrada"),
+        BARD("bard"),
+        DNB("dnb"),
+        UKRROCK("ukrrock"),
+        PUNK("punk"),
+        NEWWAVE("newwave"),
+        AFRICAN("african"),
+        HOUSE("house"),
+        LOUNGE("lounge"),
+        TRANCE("trance"),
+        RUSFOLK("rusfolk"),
+        DUBSTEP("dubstep"),
+        DISCO("disco"),
+        PROG("prog"),
+        VIDEOGAME("videogame"),
+        REGGAE("reggae"),
+        INDUSTRIAL("industrial"),
+        CONJAZZ("conjazz");
+
+        String value;
+
+        Genre(String g) {
+            value = g;
+        }
+
+        public static Genre getGenre(String sGenre) {
+            for (Genre g : Genre.values()) {
+                if (g.getValue().equals(sGenre)) {
+                    return g;
+                }
+            }
+            return UNKNOWN_GENRE;
+        }
+
+        private String getValue() {
+            return value;
+        }
+
+        //public String toString() {
+        //    int id = 0;
+        //    switch (this) {
+        //        case UnknownGenre:
+        //            id = R.string.unknown_genre;
+        //            break;
+        //        case Pop:
+        //            id = R.string.pop;
+        //            break;
+        //        case Indy:
+        //            id = R.string.indy;
+        //            break;
+        //        case Rock:
+        //            id = R.string.rock;
+        //            break;
+        //        case Metal:
+        //            id = R.string.metal;
+        //            break;
+        //        case Alternative:
+        //            id = R.string.alternative;
+        //            break;
+        //        case Electronics:
+        //            id = R.string.electronics;
+        //            break;
+        //        case Dance:
+        //            id = R.string.dance;
+        //            break;
+        //        case Rap:
+        //            id = R.string.rap;
+        //            break;
+        //        case RnB:
+        //            id = R.string.rnb;
+        //            break;
+        //        case Jazz:
+        //            id = R.string.jazz;
+        //            break;
+        //        case Blues:
+        //            id = R.string.blues;
+        //            break;
+        //        case Reggae:
+        //            id = R.string.reggae;
+        //            break;
+        //        case Punk:
+        //            id = R.string.punk;
+        //            break;
+        //    }
+        //    return getApplicationContext().getResources().getString(id);
+        //}
     }
 
-    public enum Genre {
-        Pop,
-        Dance,
-        Electronics
+    @Override
+    public int compareTo(@NonNull Artist another) {
+        return name.compareTo(another.name);
     }
 
     @Override
@@ -47,15 +154,3 @@ public class Artist implements Serializable {
         return name;
     }
 }
-
-// "id":1080505,
-// "name":"Tove Lo",
-// "genres":["pop","dance","electronics"],
-// "tracks":81,
-// "albums":22,
-// "link":"http://www.tove-lo.com/",
-// "description":"<...>",
-// "cover":{
-//      "small":"http://avatars.yandex.net/get-music-content/dfc531f5.p.1080505/300x300",
-//      "big":"http://avatars.yandex.net/get-music-content/dfc531f5.p.1080505/1000x1000"
-// }

@@ -1,10 +1,11 @@
 <ScrollView
 		xmlns:android="http://schemas.android.com/apk/res/android"
+		xmlns:card_view="http://schemas.android.com/apk/res-auto"
 		xmlns:tools="http://schemas.android.com/tools"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		xmlns:card_view="http://schemas.android.com/apk/res-auto"
-		tools:context="ru.ilyayudov.yandexartists.app.ArtistDetailsActivity">
+		tools:context="ru.ilyayudov.yandexartists.app.ArtistDetailsActivity"
+		android:scrollbars="none">
 	<FrameLayout
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
@@ -20,48 +21,60 @@
 					android:layout_height="wrap_content">
 				<FrameLayout
 						android:layout_width="match_parent"
-						android:layout_height="match_parent" android:background="@color/background_material_light"
-				>
+						android:layout_height="match_parent"
+						android:foregroundGravity="center">
+					<ProgressBar
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/small_cover_pb"
+							android:layout_gravity="center" android:indeterminate="true"
+					/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/info"
+							android:layout_gravity="center"
+							android:visibility="gone"
+							android:text="@string/cover_download_failed"
+							android:gravity="center"/>
 					<ImageView
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:id="@+id/cover"
-							android:adjustViewBounds="true" android:minHeight="300dp"/>
-					<ProgressBar
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:id="@+id/progressBar" android:layout_gravity="center"
-							android:indeterminate="true"/>
-					<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:id="@+id/info" android:layout_gravity="center" android:visibility="invisible"
-							android:text="@string/cover_download_failed" android:gravity="center"/>
+							android:adjustViewBounds="true" android:src="@drawable/cover_bg"/>
 				</FrameLayout>
 				<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceLarge"
+						android:textAppearance="@style/TextAppearance.AppCompat.Headline"
 						android:id="@+id/name"
 						android:textSize="@dimen/text_h1"
-						android:layout_marginTop="5dp"
-						android:layout_marginBottom="5dp"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"/>
+						android:paddingLeft="16dp"
+						android:paddingRight="16dp"/>
 				<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
-						android:textAppearance="?android:attr/textAppearanceSmall"
+						android:id="@+id/link"
+						android:autoLink="web"
+						android:paddingLeft="16dp"
+						android:paddingRight="16dp"
+						android:visibility="gone"/>
+				<TextView
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"
 						android:id="@+id/genres"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"
-						android:layout_marginBottom="5dp"
-						android:layout_marginTop="5dp"/>
+						android:paddingRight="16dp"
+						android:paddingLeft="16dp"
+						android:visibility="gone"/>
 				<LinearLayout
 						android:orientation="horizontal"
 						android:layout_width="match_parent"
 						android:layout_height="wrap_content"
-						android:gravity="center_vertical" android:baselineAligned="false">
+						android:gravity="center_vertical"
+						android:baselineAligned="false"
+						android:paddingTop="4dp"
+						android:paddingBottom="4dp">
 					<LinearLayout
 							android:orientation="horizontal"
 							android:layout_width="match_parent"
@@ -71,7 +84,8 @@
 						<ImageView
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
-								android:src="@drawable/ic_album_black" android:alpha="0.54"/>
+								android:src="@drawable/ic_album_black"
+								android:alpha="0.54"/>
 						<TextView
 								android:layout_width="wrap_content"
 								android:layout_height="wrap_content"
@@ -98,14 +112,17 @@
 								android:layout_marginLeft="4dp"/>
 					</LinearLayout>
 				</LinearLayout>
+				<View
+						android:layout_height="1dp"
+						android:layout_width="match_parent"
+						android:background="@color/material_grey_300"/>
 				<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:id="@+id/description"
-						android:layout_marginLeft="10dp"
-						android:layout_marginRight="10dp"
-						android:layout_marginTop="5dp"
-						android:layout_marginBottom="80dp"/>
+						android:paddingBottom="20dp" android:paddingLeft="16dp"
+						android:paddingRight="16dp" android:paddingTop="8dp"
+						android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
 			</LinearLayout>
 		</android.support.v7.widget.CardView>
 	</FrameLayout>

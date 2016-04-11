@@ -6,7 +6,9 @@
 	<ListView xmlns:android="http://schemas.android.com/apk/res/android"
 	          android:id="@+id/artists"
 	          android:layout_height="match_parent"
-	          android:layout_width="match_parent"/>
+	          android:layout_width="match_parent"
+	          android:fastScrollEnabled="true"
+	          android:smoothScrollbar="true" android:visibility="gone"/>
 	<LinearLayout
 			android:orientation="vertical"
 			android:layout_width="wrap_content"
@@ -16,12 +18,13 @@
 				android:layout_height="wrap_content"
 				android:layout_gravity="center"
 				android:id="@+id/info"
-				android:gravity="center_horizontal"/>
+				android:gravity="center_horizontal"
+				android:text="@string/loading_on_progress"/>
 		<ProgressBar
 				style="@android:style/Widget.Material.Light.ProgressBar.Horizontal"
 				android:layout_width="120dp"
 				android:layout_height="wrap_content"
-				android:id="@+id/progressBar"
+				android:id="@+id/small_cover_pb"
 				android:indeterminate="true"
 				android:indeterminateTint="@color/primary"
 				android:indeterminateTintMode="src_in"/>

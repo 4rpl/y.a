@@ -1,8 +1,25 @@
 <resources>
-	<string name="app_name">Yandex.Artists</string>
-	<string name="title_activity_artist_details">Yandex.Artists</string>
-
 	<string name="loading_on_progress">Загрузка…</string>
 	<string name="download_failed">Что-то пошло не так :(\nПопробуйте перезагрузить\nстраницу</string>
 	<string name="cover_download_failed">Загрузка изображения не удалась\nПроверьте подключение</string>
+	<string name="app_name">Yandex.Artists</string>
+	<string name="title_activity_artist_details">Yandex.Artists</string>
+	<string name="pop">Поп</string>
+	<string name="indy">Инди</string>
+	<string name="rock">Рок</string>
+	<string name="metal">Метал</string>
+	<string name="alternative">Альтернатива</string>
+	<string name="electronics">Электроника</string>
+	<string name="dance">Танцевальная</string>
+	<string name="rap">Рэп</string>
+	<string name="rnb">R&amp;B</string>
+	<string name="jazz">Джаз</string>
+	<string name="blues">Блюз</string>
+	<string name="reggae">Регги</string>
+	<string name="punk">Панк</string>
+	<string name="unknown_genre">Неизвестный жанр</string>
+
+	<string name="title_activity_cover_observer">CoverObserver</string>
+	<string name="dummy_button">Dummy Button</string>
+	<string name="dummy_content">DUMMY\nCONTENT</string>
 </resources>
