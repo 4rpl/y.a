@@ -3,6 +3,7 @@ package ru.ilyayudov.yandexartists.app;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.JsonReader;
@@ -21,9 +22,10 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class MainActivity extends AppCompatActivity {
-    TextView message;
-    ListView artists;
-    ProgressBar progressBar;
+    private TextView message;
+    private ListView artists;
+    private ProgressBar progressBar;
+    private SwipeRefreshLayout srl;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,11 +34,19 @@ public class MainActivity extends AppCompatActivity {
 
         //region Получение элементов UI
 
-        message = (TextView) findViewById(R.id.info);
+        message = (TextView) findViewById(R.id.main_info);
         artists = (ListView) findViewById(R.id.artists);
-        progressBar = (ProgressBar) findViewById(R.id.small_cover_pb);
+        progressBar = (ProgressBar) findViewById(R.id.main_pb);
+        srl = (SwipeRefreshLayout) findViewById(R.id.swipe_container);
 
         //endregion
+
+        srl.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                new ArtistsDownloadTask().execute("http://download.cdn.yandex.net/mobilization-2016/artists.json");
+            }
+        });
 
         // Начинаем загрузку данных в фоновом режиме
         new ArtistsDownloadTask().execute("http://download.cdn.yandex.net/mobilization-2016/artists.json");
@@ -65,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         protected void onPostExecute(ArrayList<Artist> result) {
+            srl.setRefreshing(false);
             progressBar.setVisibility(View.GONE);
             if (result != null) {
                 message.setVisibility(View.GONE);
-                artists.setVisibility(View.VISIBLE);
                 Collections.sort(result);
                 artists.setAdapter(
                         new ArtistArrayAdapter(

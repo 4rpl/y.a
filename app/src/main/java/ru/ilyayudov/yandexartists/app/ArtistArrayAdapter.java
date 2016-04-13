@@ -23,9 +23,14 @@ public class ArtistArrayAdapter extends ArrayAdapter<Artist> {
     public View getView(int position, View convertView, ViewGroup parent) {
         Artist artist = getItem(position);
 
+        String[] genres = new String[artist.getGenres().length];
+        for (int i = 0; i < genres.length; i++) {
+            genres[i] = artist.getGenres()[i].toString(context);
+        }
+
         convertView = LayoutInflater.from(context).inflate(R.layout.artist_list_tile, null);
-        ((TextView) convertView.findViewById(R.id.primaryText)).setText(artist.name);
-        ((TextView) convertView.findViewById(R.id.secondaryText)).setText(TextUtils.join(", ", artist.genres));
+        ((TextView) convertView.findViewById(R.id.primaryText)).setText(artist.getName());
+        ((TextView) convertView.findViewById(R.id.secondaryText)).setText(TextUtils.join(", ", genres));
 
         return convertView;
     }

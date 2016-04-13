@@ -12,9 +12,18 @@
 	<ProgressBar
 			android:layout_width="wrap_content"
 			android:layout_height="wrap_content"
-			android:id="@+id/big_cover_pb"
+			android:id="@+id/observer_pb"
 			android:layout_gravity="center"
 			android:indeterminate="true"
-			style="@style/Base.Widget.AppCompat.ProgressBar" android:indeterminateTint="@color/primary"
+			style="@style/Base.Widget.AppCompat.ProgressBar"
+			android:indeterminateTint="@color/primary"
 			android:indeterminateTintMode="src_in"/>
+	<TextView
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:text="@string/cover_download_failed"
+			android:id="@+id/observer_info"
+			android:layout_gravity="center"
+			android:textColor="@android:color/secondary_text_dark"
+			android:gravity="center_horizontal" android:visibility="gone" android:background="#99000000"/>
 </FrameLayout>

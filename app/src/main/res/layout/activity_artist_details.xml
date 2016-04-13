@@ -22,26 +22,28 @@
 				<FrameLayout
 						android:layout_width="match_parent"
 						android:layout_height="match_parent"
-						android:foregroundGravity="center">
-					<ProgressBar
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:id="@+id/small_cover_pb"
-							android:layout_gravity="center" android:indeterminate="true"
-					/>
-					<TextView
-							android:layout_width="wrap_content"
-							android:layout_height="wrap_content"
-							android:id="@+id/info"
-							android:layout_gravity="center"
-							android:visibility="gone"
-							android:text="@string/cover_download_failed"
-							android:gravity="center"/>
+						android:foregroundGravity="center"
+						android:id="@+id/details_cover_container">
 					<ImageView
 							android:layout_width="match_parent"
 							android:layout_height="wrap_content"
 							android:id="@+id/cover"
-							android:adjustViewBounds="true" android:src="@drawable/cover_bg"/>
+							android:adjustViewBounds="true"
+							android:src="@drawable/cover_bg" android:translationZ="8dp"/>
+					<ProgressBar
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/details_pb"
+							android:layout_gravity="center"
+							android:indeterminate="true"/>
+					<TextView
+							android:layout_width="wrap_content"
+							android:layout_height="wrap_content"
+							android:id="@+id/details_info"
+							android:layout_gravity="center"
+							android:visibility="gone"
+							android:text="@string/cover_download_failed"
+							android:gravity="center"/>
 				</FrameLayout>
 				<TextView
 						android:layout_width="wrap_content"
@@ -55,10 +57,9 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:id="@+id/link"
-						android:autoLink="web"
 						android:paddingLeft="16dp"
 						android:paddingRight="16dp"
-						android:visibility="gone"/>
+						android:visibility="gone" android:autoLink="web"/>
 				<TextView
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
@@ -120,8 +121,10 @@
 						android:layout_width="wrap_content"
 						android:layout_height="wrap_content"
 						android:id="@+id/description"
-						android:paddingBottom="20dp" android:paddingLeft="16dp"
-						android:paddingRight="16dp" android:paddingTop="8dp"
+						android:paddingBottom="20dp"
+						android:paddingLeft="16dp"
+						android:paddingRight="16dp"
+						android:paddingTop="8dp"
 						android:textAppearance="@style/Base.TextAppearance.AppCompat.Body1"/>
 			</LinearLayout>
 		</android.support.v7.widget.CardView>
