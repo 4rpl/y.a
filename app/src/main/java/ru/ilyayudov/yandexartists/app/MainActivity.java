@@ -1,14 +1,12 @@
 package ru.ilyayudov.yandexartists.app;
 
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.JsonReader;
 import android.util.JsonToken;
-import android.util.LruCache;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;

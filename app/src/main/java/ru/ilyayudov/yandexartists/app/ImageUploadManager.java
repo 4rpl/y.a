@@ -7,6 +7,7 @@ import java.io.*;
 import java.net.URL;
 
 // Класс, через который осуществляется кэширование изображений
+// Кэширование работает только в рамках одной итерации ЖЦ
 public class ImageUploadManager {
     private static LruCache<String, Drawable> cache = new LruCache<String, Drawable>(2 * 1024 * 1024); // 2 МБ
 

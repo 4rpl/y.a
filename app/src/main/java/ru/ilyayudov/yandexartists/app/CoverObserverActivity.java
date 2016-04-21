@@ -31,7 +31,7 @@ public class CoverObserverActivity extends Activity {
 
         //endregion
 
-        // Если в кэше есть маленькая обложка, то ставим его для плавности
+        // Если в кэше есть маленькая обложка, то ставим её для большей плавности
         coverContainer.setImageDrawable(ImageUploadManager.GetCachedImage(getIntent().getStringExtra("uri_small")));
         new CoverUploader().execute(getIntent().getStringExtra("uri_big"));
     }
